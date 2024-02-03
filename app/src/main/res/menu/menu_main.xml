@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item
+        android:id="@+id/addLesson" android:icon="@android:drawable/ic_menu_add" app:showAsAction="never" android:title="@string/aggiungi_nuova_lezione">
+    </item>
+    <item
+        android:id="@+id/updateResources"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="@string/gestisci_risorse"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/exit"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:title="@string/logout"
+        app:showAsAction="never"></item>
+</menu>

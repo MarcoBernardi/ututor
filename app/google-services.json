@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "575147941215",
-    "project_id": "ututor-e4f22",
-    "storage_bucket": "ututor-e4f22.appspot.com"
+    "project_number": "299844616041",
+    "project_id": "ututorapp-36ee0",
+    "storage_bucket": "ututorapp-36ee0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:575147941215:android:c4f2c9b3d3bf13c0226aea",
+        "mobilesdk_app_id": "1:299844616041:android:18aa8959112f830dcc07f8",
         "android_client_info": {
           "package_name": "com.example.ututor"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD0y95uRyCPTMOm7nJT2UVf5aFlNiot3c4"
+          "current_key": "AIzaSyDdq8Mw4Cl4EHYf_MPFUfQQ1MT-JhrMqkY"
         }
       ],
       "services": {

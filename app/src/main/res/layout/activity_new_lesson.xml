@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".views.NewLessonController"
+    tools:layout_editor_absoluteX="-10dp"
+    tools:layout_editor_absoluteY="3dp">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ututor.viewmodels.NewLessonViewModel" />
+    </data>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/lezioneNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:autofillHints=""
+            android:hint="NOME LEZIONE"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColorHint="#78909C" />
+
+        <EditText
+            android:id="@+id/descrizione"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:autofillHints=""
+            android:hint="DESCRIZIONE LEZIONE"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/scadenza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:autofillHints=""
+            android:clickable="true"
+            android:ems="10"
+            android:focusable="auto"
+            android:focusableInTouchMode="false"
+            android:hint="SCADENZA LEZIONE"
+            android:inputType="date"
+            android:linksClickable="false"
+            android:minHeight="48dp"
+            android:textColorHint="#757575" />
+
+        <Spinner
+            android:id="@+id/risorse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:addStatesFromChildren="false"
+            android:animateLayoutChanges="false"
+            android:animationCache="true"
+            android:contentDescription="@string/risorse"
+            android:minHeight="48dp"
+            android:scrollbarStyle="outsideOverlay">
+
+        </Spinner>
+
+        <Button
+            android:id="@+id/crea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            android:text="CREA LEZIONE" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="64dp"
+            android:background="@color/blu_navy" />
+
+    </LinearLayout>
+
+</layout>

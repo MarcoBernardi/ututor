@@ -1,4 +1,4 @@
-package com.example.ututor
+package com.example.ututor.views
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,20 +12,28 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import androidx.databinding.DataBindingUtil
+import androidx.room.Room
+import com.example.ututor.R
+import com.example.ututor.databinding.ActivityLoginBinding
+import com.example.ututor.room.AppDatabase
 import java.io.File
-import com.example.ututor.models.UserModel
+import com.example.ututor.viewmodels.LoginViewModel
 
 class Login : AppCompatActivity() {
-    @SuppressLint("SetTextI18n")
 
+    private lateinit var binding: ActivityLoginBinding
+    private val loginViewModel: LoginViewModel by viewModels()
+    @SuppressLint("SetTextI18n")
     var stateLogin = "error"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        binding.viewModel = loginViewModel
+        binding.lifecycleOwner = this
         title = "UTutor"
         val file = File(applicationContext.filesDir, "ututor_data")
         if(file.isFile)
@@ -37,11 +45,9 @@ class Login : AppCompatActivity() {
                 }
             }
 
-        val settings = applicationContext.getSharedPreferences("ututor", 0)
-        val editor = settings.edit()
-        val UM = UserModel()
-        val db = Firebase.firestore
-        val azienda = findViewById<EditText>(R.id.azienda)
+
+        loginViewModel.getRoomDb(applicationContext)
+        val university = findViewById<EditText>(R.id.university)
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val buttonLogin = findViewById<Button>(R.id.button)
@@ -54,32 +60,26 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this@Login, "No Internet Connection", Toast.LENGTH_SHORT).show()
             else {
                 val intent = Intent(this@Login, Dashboard::class.java)
-                if (!azienda.text.isEmpty() || !username.text.isEmpty() || !password.text.isEmpty()) {
-                    UM.login(this@Login,
-                        azienda.text.toString(),
-                        username.text.toString(),
-                        password.text.toString()
-                    ) {
+                if (!university.text.isEmpty() || !username.text.isEmpty() || !password.text.isEmpty()) {
+                    loginViewModel.login(university.text.toString(),
+                                        username.text.toString(),
+                                        password.text.toString())
+                    {
                         if (!it.equals("error")) {
-                            Toast.makeText(this@Login, it.toString(), Toast.LENGTH_SHORT).show()
-
-                            editor.putString("role", it)
-                            editor.putString("university", azienda.text.toString())
-                            editor.putString("user", username.text.toString())
+                            loginViewModel.insertPreference( university.text.toString(), it,username.text.toString())
                             if (findViewById<Switch>(R.id.saveData).isChecked)
                                 applicationContext.openFileOutput("ututor_data", Context.MODE_PRIVATE)
                                     .use {
                                         val vw =
-                                            "university=" + azienda.text.toString() + "\nuser=" + username.text.toString() + "\npassword=" + password.text.toString()
+                                            "university=" + university.text.toString() + "\nuser=" + username.text.toString() + "\npassword=" + password.text.toString()
                                         it.write(vw.toByteArray())
                                     }
                             else
                                 applicationContext.deleteFile("ututor_data")
-                            editor.apply()
                             startActivity(intent)
 
                         } else {
-                            azienda.backgroundTintList =
+                            university.backgroundTintList =
                                 ColorStateList.valueOf(Color.parseColor("#FC2D00"))
                             username.backgroundTintList =
                                 ColorStateList.valueOf(Color.parseColor("#FC2D00"))
@@ -90,7 +90,7 @@ class Login : AppCompatActivity() {
                     }
 
                 } else {
-                    azienda.backgroundTintList =
+                    university.backgroundTintList =
                         ColorStateList.valueOf(Color.parseColor("#FC2D00"))
                     username.backgroundTintList =
                         ColorStateList.valueOf(Color.parseColor("#FC2D00"))
@@ -103,6 +103,8 @@ class Login : AppCompatActivity() {
 
         })
     }
+
+
 
 }
 
