@@ -41,7 +41,6 @@ class DashboardView : AppCompatActivity() {
     lateinit var listView: ListView
     private lateinit var binding: ActivityDashboardBinding
     private val dashboardViewModel: DashboardViewModel by viewModels()
-    private val tM = LessonRepo()
     lateinit var university:String
     lateinit var role: String
     lateinit var user: String

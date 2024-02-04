@@ -25,7 +25,6 @@ class LoginView : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
     @SuppressLint("SetTextI18n")
-    var stateLogin = "error"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
