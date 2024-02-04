@@ -12,6 +12,8 @@ interface PreferencesDAO {
     @Insert
     suspend fun insertAll(vararg preference : Preferences)
 
+    @Query("DELETE FROM preferences")
+    fun nukeTable()
     @Query("SELECT university FROM preferences")
     fun getUniversity(): String
 

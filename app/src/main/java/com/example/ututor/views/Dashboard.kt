@@ -105,7 +105,9 @@ class Dashboard : AppCompatActivity() {
             }   //add the function to perform here
 
             R.id.exit ->   {
+
                 finish()
+                dashboardViewModel.deletePreferences()
                 return true
             }
 
@@ -171,7 +173,7 @@ class Dashboard : AppCompatActivity() {
         val preferencesObserver = Observer<Preferences> { preferences ->
             role = preferences.role.toString()
             university = preferences.university.toString()
-            user = preferences.role.toString()
+            user = preferences.username.toString()
             dashboardViewModel.refreshLessons()
 
         }

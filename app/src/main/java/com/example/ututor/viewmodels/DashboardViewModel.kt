@@ -36,13 +36,18 @@ class DashboardViewModel()
     fun setPreferences(context: Context){
 
         getRoomDb(context)
-        var pref: Preferences? = null
-        pref =  preferencesDb.getAll()[0]
-        un = pref.university.toString()
-        us = pref.role.toString()
-        ro = pref.username.toString()
-        _preferences.value = pref
+        var pref: List<Preferences?>
+        pref =  preferencesDb.getAll()
+        var p = pref[0]
+        un = p.university.toString()
+        ro = p.role.toString()
+        us = p.username.toString()
+        _preferences.value = p
 
+    }
+
+    fun deletePreferences(){
+        preferencesDb.nukeTable()
     }
 
     fun getUniversity(): String {

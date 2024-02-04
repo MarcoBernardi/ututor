@@ -11,7 +11,7 @@ class UserRepo {
 
     suspend fun login( university: String, user: String, pwd: String, myCallback: (result: String) -> Unit) {
         withContext(Dispatchers.IO) {
-            db.collection("/"+university+"/users/group")
+            db.collection(university+"/users/group")
                 .whereEqualTo("username", user).whereEqualTo("password", pwd).get().addOnCompleteListener {
                     if (it.result.size() == 1) {
 
