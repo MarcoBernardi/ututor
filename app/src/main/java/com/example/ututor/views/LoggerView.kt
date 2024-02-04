@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LoggerController : AppCompatActivity() {
+class LoggerView : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogBinding
     private val  loggerViewModel: LoggerViewModel by viewModels()

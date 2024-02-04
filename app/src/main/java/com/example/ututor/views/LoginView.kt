@@ -15,14 +15,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.room.Room
 import com.example.ututor.R
 import com.example.ututor.databinding.ActivityLoginBinding
-import com.example.ututor.room.AppDatabase
 import java.io.File
 import com.example.ututor.viewmodels.LoginViewModel
 
-class Login : AppCompatActivity() {
+class LoginView : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
@@ -51,15 +49,15 @@ class Login : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val buttonLogin = findViewById<Button>(R.id.button)
-        if ((this@Login.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo == null) {
-            Toast.makeText(this@Login, "No Internet Connection", Toast.LENGTH_SHORT).show()
+        if ((this@LoginView.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo == null) {
+            Toast.makeText(this@LoginView, "No Internet Connection", Toast.LENGTH_SHORT).show()
 
         }
         buttonLogin.setOnClickListener(View.OnClickListener {
-            if ((this@Login.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo == null)
-                Toast.makeText(this@Login, "No Internet Connection", Toast.LENGTH_SHORT).show()
+            if ((this@LoginView.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo == null)
+                Toast.makeText(this@LoginView, "No Internet Connection", Toast.LENGTH_SHORT).show()
             else {
-                val intent = Intent(this@Login, Dashboard::class.java)
+                val intent = Intent(this@LoginView, DashboardView::class.java)
                 if (!university.text.isEmpty() || !username.text.isEmpty() || !password.text.isEmpty()) {
                     loginViewModel.login(university.text.toString(),
                                         username.text.toString(),

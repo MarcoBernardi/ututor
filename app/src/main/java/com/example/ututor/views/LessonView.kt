@@ -22,7 +22,6 @@ import com.example.ututor.Allert
 import com.example.ututor.models.Lesson
 import com.example.ututor.R
 import com.example.ututor.databinding.ActivityLessonBinding
-import com.example.ututor.room.Preferences
 import com.example.ututor.viewmodels.LessonViewModel
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
@@ -30,7 +29,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class LessonController : AppCompatActivity() {
+class LessonView : AppCompatActivity() {
 
     private lateinit var binding: ActivityLessonBinding
     private val lessonViewModel: LessonViewModel by viewModels()
@@ -312,7 +311,7 @@ class LessonController : AppCompatActivity() {
         var log = findViewById<Button>(R.id.log_button)
         log.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
-                val intent = Intent(this@LessonController, LoggerController::class.java)
+                val intent = Intent(this@LessonView, LoggerView::class.java)
                 intent.putExtra("Lesson", lessonViewModel._currentLesson.value)
                 intent.putExtra("university", university)
                 intent.putExtra("role", role)

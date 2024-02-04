@@ -37,7 +37,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class Dashboard : AppCompatActivity() {
+class DashboardView : AppCompatActivity() {
     lateinit var listView: ListView
     private lateinit var binding: ActivityDashboardBinding
     private val dashboardViewModel: DashboardViewModel by viewModels()
@@ -59,14 +59,14 @@ class Dashboard : AppCompatActivity() {
         val valueId = findById(result.data!!.getStringExtra("value") as String)
         if(valueId != null) {
             dashboardViewModel.setCurrentLesson(valueId)
-            val intent = Intent(context, LessonController::class.java)
+            val intent = Intent(context, LessonView::class.java)
             context.startActivity(intent)
         }
     }
 
     val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         if (result.resultCode == Activity.RESULT_OK) {
-           handleLesson(this@Dashboard, result)
+           handleLesson(this@DashboardView, result)
         }
         else
             Toast.makeText(this, "Lezione non trovata", Toast.LENGTH_SHORT).show()
@@ -86,7 +86,7 @@ class Dashboard : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.addLesson ->      {
-                val intent = Intent(this@Dashboard, NewLessonController::class.java)
+                val intent = Intent(this@DashboardView, NewLessonView::class.java)
                 intent.putExtra("university", university)
                 intent.putExtra("role", role)
                 intent.putExtra("user", user)
@@ -95,7 +95,7 @@ class Dashboard : AppCompatActivity() {
             }   //add the function to perform here
 
             R.id.updateResources ->      {
-                val intent = Intent(this@Dashboard, ResourcesController::class.java)
+                val intent = Intent(this@DashboardView, ResourcesView::class.java)
                 intent.putExtra("LessonList", dashboardViewModel.getLessonList())
                 intent.putExtra("university", university)
                 intent.putExtra("role", role)
@@ -164,7 +164,7 @@ class Dashboard : AppCompatActivity() {
             }
             override fun onLost(network: Network) {
                 super.onLost(network)
-                Toast.makeText(this@Dashboard,"Please enable internet connectivity for the app to work!",
+                Toast.makeText(this@DashboardView,"Please enable internet connectivity for the app to work!",
                     Toast.LENGTH_LONG ).show()
                 runOnUiThread { listView.isEnabled = false}
             }
@@ -262,7 +262,7 @@ class Dashboard : AppCompatActivity() {
         listView.setOnItemClickListener() { adapterView, _, position, _ ->
             val id = listView.getItemAtPosition(position)
             val lesson = findById(id as String)
-            val intent = Intent(this, LessonController::class.java)
+            val intent = Intent(this, LessonView::class.java)
             if (lesson != null) {
                 dashboardViewModel.setCurrentLesson(lesson)
             }

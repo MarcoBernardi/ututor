@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    tools:context=".views.Login">
+    tools:context=".views.LoginView">
     <data>
         <variable
             name="viewModel"

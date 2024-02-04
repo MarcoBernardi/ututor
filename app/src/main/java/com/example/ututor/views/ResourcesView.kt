@@ -12,12 +12,11 @@ import androidx.lifecycle.Observer
 import com.example.ututor.models.Lesson
 import com.example.ututor.R
 import com.example.ututor.databinding.ActivityResourcesBinding
-import com.example.ututor.models.LessonRepo
 import com.example.ututor.viewadapters.ResourcesViewAdapter
 import com.example.ututor.viewmodels.ResourcesViewModel
 
 
-class ResourcesController : AppCompatActivity() {
+class ResourcesView : AppCompatActivity() {
 
     private lateinit var binding: ActivityResourcesBinding
     private val resourcesViewModel: ResourcesViewModel by viewModels()

@@ -35,7 +35,7 @@ class Profile : AppCompatActivity() {
                             it.write(vw.toByteArray())
                         }
                         Toast.makeText(applicationContext, "Password modificata", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this@Profile, Dashboard::class.java)
+                        val intent = Intent(this@Profile, DashboardView::class.java)
                         startActivity(intent)
                     }
                 }

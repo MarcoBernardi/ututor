@@ -24,7 +24,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class NewLessonController : AppCompatActivity() {
+class NewLessonView : AppCompatActivity() {
     private lateinit var binding: ActivityNewLessonBinding
     private val newLessonViewModel: NewLessonViewModel by viewModels()
     lateinit var university: String
@@ -72,7 +72,7 @@ class NewLessonController : AppCompatActivity() {
         buttonCrea.setOnClickListener(View.OnClickListener {
             //println(verifyId(azienda.text.toString(),username.text.toString(),password.text.toString()))
 
-            val intent = Intent(this@NewLessonController, Dashboard::class.java)
+            val intent = Intent(this@NewLessonView, DashboardView::class.java)
 
 
             var temp = ""
